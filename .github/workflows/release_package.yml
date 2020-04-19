@@ -13,7 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - uses: olegtarasov/get-tag@v2
+    - name: Export tag version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     
     - name: Docker Login
       run: echo $PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u USERNAME -password-stdin
@@ -21,10 +22,10 @@ jobs:
         PACKAGES_WRITE_TOKEN: ${{ secrets.PACKAGES_WRITE_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
     - name: Docker Build
-      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$GIT_TAG_NAME
+      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$VERSION
       env:
         USERNAME: ${{ secrets.USERNAME }}
     - name: Deploy
-      run: docker push docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$GIT_TAG_NAME
+      run: docker push docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$VERSION
       env:
         USERNAME: ${{ secrets.USERNAME }}
