@@ -7,7 +7,7 @@ LABEL "com.github.actions.description"="Runs Swift Dangerfiles"
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="blue"
 
-ARG SWIFT_LINT_VER=0.30.1
+ARG SWIFT_LINT_VER=0.39.2
 
 # Install nodejs
 RUN apt-get update -q \
