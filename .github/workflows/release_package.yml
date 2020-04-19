@@ -18,10 +18,10 @@ jobs:
         PACKAGES_WRITE_TOKEN: ${{ secrets.PACKAGES_WRITE_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
     - name: Docker Build
-      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$GITHUB_REF
+      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:${GITHUB_REF/refs\/tags\//}
       env:
         USERNAME: ${{ secrets.USERNAME }}
     - name: Deploy
-      run: docker push docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$GITHUB_REF
+      run: docker push docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:${GITHUB_REF/refs\/tags\//}
       env:
         USERNAME: ${{ secrets.USERNAME }}
