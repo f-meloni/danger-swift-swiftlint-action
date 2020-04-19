@@ -17,7 +17,7 @@ jobs:
       run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
     
     - name: Docker Login
-      run: echo $PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u $USERNAME -password-stdin
+      run: echo $PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u $USERNAME --password-stdin
       env:
         PACKAGES_WRITE_TOKEN: ${{ secrets.PACKAGES_WRITE_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
