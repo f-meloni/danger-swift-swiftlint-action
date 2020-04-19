@@ -13,10 +13,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Docker Login
-      run: echo $GITHUB_PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u $GITHUB_USERNAME -password-stdin
+      run: echo $PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u USERNAME -password-stdin
       env:
-        GITHUB_PACKAGES_WRITE_TOKEN: ${{ secrets.GITHUB_PACKAGES_WRITE_TOKEN }}
-        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+        PACKAGES_WRITE_TOKEN: ${{ secrets.PACKAGES_WRITE_TOKEN }}
+        USERNAME: ${{ secrets.USERNAME }}
     - name: Docker Build
       run: docker build -t docker.pkg.github.com/f-meloni/danger-swift-swiftlint-action/danger-swift:$GITHUB_REF
     - name: Deploy
