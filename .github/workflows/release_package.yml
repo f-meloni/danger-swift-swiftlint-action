@@ -22,7 +22,7 @@ jobs:
         PACKAGES_WRITE_TOKEN: ${{ secrets.PACKAGES_WRITE_TOKEN }}
         USERNAME: ${{ secrets.USERNAME }}
     - name: Docker Build
-      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$VERSION
+      run: docker build -t docker.pkg.github.com/$USERNAME/danger-swift-swiftlint-action/danger-swift:$VERSION .
       env:
         USERNAME: ${{ secrets.USERNAME }}
     - name: Deploy
