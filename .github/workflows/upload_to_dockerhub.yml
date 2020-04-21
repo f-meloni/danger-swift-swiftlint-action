@@ -16,7 +16,7 @@ jobs:
       run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
     
     - name: Docker Login
-      run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+      run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin docker.io
       env:
         DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
