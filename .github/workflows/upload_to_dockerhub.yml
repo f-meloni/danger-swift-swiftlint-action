@@ -1,0 +1,30 @@
+name: Release to Docker hub
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Export tag version
+      run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
+    
+    - name: Docker Login
+      run: echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    - name: Docker Build
+      run: docker build -t $DOCKER_USERNAME/danger-swift-with-swiftlint:$VERSION .
+      env:
+        DOCKER_USERNAME: ${{ secrets.USERNAME }}
+    - name: Deploy
+      run: docker push $DOCKER_USERNAME/danger-swift-with-swiftlint:$VERSION
+      env:
+        DOCKER_USERNAME: ${{ secrets.USERNAME }}
