@@ -23,8 +23,8 @@ jobs:
     - name: Docker Build
       run: docker build -t $DOCKER_USERNAME/danger-swift-with-swiftlint:$VERSION .
       env:
-        DOCKER_USERNAME: ${{ secrets.USERNAME }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     - name: Deploy
       run: docker push $DOCKER_USERNAME/danger-swift-with-swiftlint:$VERSION
       env:
-        DOCKER_USERNAME: ${{ secrets.USERNAME }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
