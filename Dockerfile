@@ -18,12 +18,20 @@ RUN apt-get update -q \
     && rm -r /var/lib/apt/lists/*
 
 # install SwiftLint
-RUN git clone -b $SWIFT_LINT_VER --single-branch --depth 1 https://github.com/realm/SwiftLint.git _SwiftLint
-RUN cd _SwiftLint && git submodule update --init --recursive; make install
+RUN git clone -b $SWIFT_LINT_VER --single-branch --depth 1 https://github.com/realm/SwiftLint.git _SwiftLint \
+    && cd _SwiftLint \
+    && git submodule update --init --recursive; make install \
+    && cd .. \
+    && rm -rf _SwiftLint
 
 # Install danger-swift globally
-RUN git clone https://github.com/danger/danger-swift.git _danger-swift
-RUN cd _danger-swift && make install
+RUN git clone https://github.com/danger/danger-swift.git _danger-swift \
+    && cd _danger-swift \ 
+    && make install \ 
+    && cd .. \
+    && rm -rf _danger-swift
+    
+RUN npm install -g danger
 
 # Run Danger Swift via Danger JS, allowing for custom args
-ENTRYPOINT ["npx", "--package", "danger", "danger-swift", "ci"]
+ENTRYPOINT ["danger-swift", "ci"]
