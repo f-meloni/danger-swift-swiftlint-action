@@ -25,7 +25,7 @@ RUN git clone -b $SWIFT_LINT_VER --single-branch --depth 1 https://github.com/re
     && rm -rf _SwiftLint
 
 # Install danger-swift globally
-RUN git clone https://github.com/danger/danger-swift.git _danger-swift -b 3.3.2 -single-branch --depth 1 \
+RUN git clone https://github.com/danger/danger-swift.git _danger-swift -b 3.3.2 --single-branch --depth 1 \
     && cd _danger-swift \ 
     && make install \ 
     && cd .. \
