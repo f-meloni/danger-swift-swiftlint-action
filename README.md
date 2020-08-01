@@ -7,7 +7,7 @@ To use it just add to your actions yaml
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: f-meloni/danger-swift-swiftlint-action@1.2.0
+        uses: f-meloni/danger-swift-swiftlint-action@1.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -24,7 +24,7 @@ To use it on your action:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: docker://frmeloni/danger-swift-with-swiftlint:1.2.0
+        uses: docker://frmeloni/danger-swift-with-swiftlint:1.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
