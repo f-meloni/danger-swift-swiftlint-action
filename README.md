@@ -2,6 +2,7 @@
 
 Use https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint instead
 
+# Danger Swiftlint Action
 
 Dockerfile that installs both Danger-swift and Swiftlint
 To use it just add to your actions yaml
