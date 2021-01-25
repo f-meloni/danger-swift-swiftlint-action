@@ -1,3 +1,8 @@
+# ⚠️ Deprecated
+
+Use https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint instead
+
+
 Dockerfile that installs both Danger-swift and Swiftlint
 To use it just add to your actions yaml
 
